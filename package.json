@@ -1,0 +1,21 @@
+{
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "migrate:db": "tsx src/database/migrate.ts",
+    "generate:db":"npx drizzle-kit generate:pg",
+    "studio:db":"npx drizzle-kit studio"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.9.0",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.30.7",
+    "hono": "^4.2.1",
+    "pg": "^8.11.5",
+    "postgres": "^3.4.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "drizzle-kit": "^0.20.14",
+    "tsx": "^4.7.1"
+  }
+}
