@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import {
   boolean,
   integer,
@@ -71,3 +72,31 @@ export const CategoryPost = pgTable(
     }),
   })
 );
+
+// db relations
+
+export const UserRelation = relations(User, ({ one, many }) => ({
+  preference: one(UserPreference),
+  posts: many(Post),
+}));
+
+export const UserPreferenceRelation = relations(UserPreference, ({ one }) => ({
+  user: one(User, { fields: [UserPreference.userId], references: [User.id] }),
+}));
+
+export const PostRelation = relations(Post, ({ one, many }) => ({
+  author: one(User, { fields: [Post.authorId], references: [User.id] }),
+  categorys: many(CategoryPost),
+}));
+
+export const CategoryRelation = relations(Category, ({ many }) => ({
+  posts: many(CategoryPost),
+}));
+
+export const CategoryPostRelation = relations(CategoryPost, ({ one }) => ({
+  posts: one(Post, { fields: [CategoryPost.postId], references: [Post.id] }),
+  categorys: one(Category, {
+    fields: [CategoryPost.categoryId],
+    references: [Category.id],
+  }),
+}));
