@@ -2,6 +2,7 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "migrate:db": "tsx src/database/migrate.ts",
+    "migrate:drop": "npx drizzle-kit drop",
     "generate:db":"npx drizzle-kit generate:pg",
     "studio:db":"npx drizzle-kit studio"
   },
